@@ -82,8 +82,5 @@ This project is licensed under the MIT License.
 
 
 
----
-
-Would you like me to create the file for you or help you commit and push it to your GitHub repo?
 
 
