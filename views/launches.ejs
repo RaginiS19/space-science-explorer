@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<main>
+  <% if (error) { %>
+    <div class="error-box">
+      <strong>⚠️ Error:</strong> <%= error %>
+    </div>
+  <% } else { %>
+    <section class="launches">
+      <h2>🚀 Upcoming SpaceX Launches</h2>
+      <% if (launches.length > 0) { %>
+        <ul class="launch-list">
+          <% launches.forEach(launch => { %>
+            <li>
+              <strong><%= launch.name %></strong>
+              <span>
+                🗓️
+                <%= new Date(launch.window_start).toLocaleString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: '2-digit',
+                  hour12: true
+                }) %>
+              </span>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>No upcoming launches available.</p>
+      <% } %>
+    </section>
+  <% } %>
+
+  <div class="button-group">
+    <a href="/" class="button">⬅ Back to Home</a>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

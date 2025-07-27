@@ -1,0 +1,288 @@
+/* Base Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+/* Header & Footer */
+header,
+footer {
+  background-color: #20232a;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Main Content */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+  color: #20232a;
+  margin-top: 1rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/* Images and Media */
+img,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+/* Links */
+a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Error Box Styling */
+.error-box {
+  background-color: #ffe5e5;
+  border-left: 5px solid #d32f2f;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  color: #b71c1c;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-box::before {
+  content: "⚠️";
+  font-size: 1.3rem;
+}
+
+/* Launches List */
+.launch-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.launch-list li {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-left: 4px solid #0077cc;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.launch-list li strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.launch-list li span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Navigation Styles */
+nav {
+  margin-top: 0.5rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li a {
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #1a73e8;
+}
+
+/* Date Form Styles */
+.date-form {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.date-form label {
+  font-weight: bold;
+}
+
+.date-form input[type="date"] {
+  padding: 0.4rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.date-form button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.date-form button:hover {
+  background-color: #0f5dc1;
+}
+
+/* APOD Media Styles */
+.apod-media {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border: none;
+}
+
+/* Spinner Loading */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #0077cc;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  background-color: #1a73e8;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0c5cd2;
+}
+
+/* Responsive Design */
+
+/* Tablets & smaller screens */
+@media (max-width: 768px) {
+  main {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  img,
+  iframe {
+    width: 100%;
+    height: auto;
+  }
+
+  ul {
+    padding-left: 1rem;
+  }
+
+  .apod p,
+  .launches p,
+  .apod h3,
+  .launches h3 {
+    text-align: left;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  header,
+  footer {
+    padding: 0.8rem 0;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+}
