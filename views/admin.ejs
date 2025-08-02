@@ -1,0 +1,165 @@
+<%- include('partials/header') %>
+
+<main>
+  <h1>🚀 Space Science Explorer - Admin Panel</h1>
+  
+  <div class="admin-container">
+    <!-- Add Custom Launch -->
+    <section class="admin-section">
+      <h2>Add Custom Launch</h2>
+      <form id="launchForm" class="admin-form">
+        <div class="form-group">
+          <label for="launchName">Launch Name:</label>
+          <input type="text" id="launchName" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="launchDate">Launch Date:</label>
+          <input type="datetime-local" id="launchDate" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="launchDescription">Description:</label>
+          <textarea id="launchDescription" name="description" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="launchRocket">Rocket:</label>
+          <input type="text" id="launchRocket" name="rocket" required>
+        </div>
+        <button type="submit" class="button">Add Launch</button>
+      </form>
+    </section>
+
+    <!-- Add Space News -->
+    <section class="admin-section">
+      <h2>Add Space News</h2>
+      <form id="newsForm" class="admin-form">
+        <div class="form-group">
+          <label for="newsTitle">Title:</label>
+          <input type="text" id="newsTitle" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="newsContent">Content:</label>
+          <textarea id="newsContent" name="content" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="newsAuthor">Author:</label>
+          <input type="text" id="newsAuthor" name="author" required>
+        </div>
+        <button type="submit" class="button">Add News</button>
+      </form>
+    </section>
+
+    <!-- Data Overview -->
+    <section class="admin-section">
+      <h2>Data Overview</h2>
+      <div class="data-stats">
+        <div class="stat-card">
+          <h3>Favorites</h3>
+          <p class="stat-number"><%= data.favorites.length %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Custom Launches</h3>
+          <p class="stat-number"><%= data.customLaunches.length %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Space News</h3>
+          <p class="stat-number"><%= data.spaceNews.length %></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Launches List -->
+    <section class="admin-section">
+      <h2>Custom Launches</h2>
+      <div class="data-list">
+        <% if (data.customLaunches.length > 0) { %>
+          <% data.customLaunches.forEach(launch => { %>
+            <div class="data-item">
+              <h4><%= launch.name %></h4>
+              <p><strong>Date:</strong> <%= new Date(launch.date).toLocaleString() %></p>
+              <p><strong>Rocket:</strong> <%= launch.rocket %></p>
+              <p><%= launch.description %></p>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p>No custom launches added yet.</p>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- Space News List -->
+    <section class="admin-section">
+      <h2>Space News</h2>
+      <div class="data-list">
+        <% if (data.spaceNews.length > 0) { %>
+          <% data.spaceNews.forEach(news => { %>
+            <div class="data-item">
+              <h4><%= news.title %></h4>
+              <p><strong>Author:</strong> <%= news.author %></p>
+              <p><strong>Date:</strong> <%= new Date(news.created_at).toLocaleDateString() %></p>
+              <p><%= news.content %></p>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p>No space news added yet.</p>
+        <% } %>
+      </div>
+    </section>
+  </div>
+
+  <div class="button-group">
+    <a href="/" class="button">⬅ Back to Home</a>
+    <a href="/api" class="button">📡 View API</a>
+  </div>
+</main>
+
+<script>
+  // Handle launch form submission
+  document.getElementById('launchForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    
+    try {
+      const response = await fetch('/api/admin/custom-launch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        alert('Launch added successfully!');
+        location.reload();
+      } else {
+        alert('Error adding launch');
+      }
+    } catch (error) {
+      alert('Error adding launch');
+    }
+  });
+
+  // Handle news form submission
+  document.getElementById('newsForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    
+    try {
+      const response = await fetch('/api/admin/space-news', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        alert('News added successfully!');
+        location.reload();
+      } else {
+        alert('Error adding news');
+      }
+    } catch (error) {
+      alert('Error adding news');
+    }
+  });
+</script>
+
+<%- include('partials/footer') %> 

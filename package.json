@@ -4,17 +4,25 @@
   "type": "commonjs",
   "scripts": {
     "start": "node app.js",
-    "test": "jest"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node app.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "test": "jest",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["space", "nasa", "spacex", "react", "api"],
+  "author": "Ragini Shirwalkar",
   "license": "ISC",
-  "description": "",
+  "description": "A professional space science explorer with React frontend and Express API backend",
   "dependencies": {
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "cors": "^2.8.5",
+    "concurrently": "^8.2.2"
   },
   "devDependencies": {
     "jest": "^30.0.5",

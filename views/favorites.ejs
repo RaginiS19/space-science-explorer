@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<main>
+  <h1>❤️ Favorite APODs</h1>
+  <p>This page displays saved APODs using localStorage.</p>
+
+  <div id="favorites-container" class="gallery-grid"></div>
+
+  <a href="/" class="button">⬅ Back to Home</a>
+</main>
+
+<script>
+  const container = document.getElementById("favorites-container");
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  favorites.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  if (favorites.length === 0) {
+    container.innerHTML = "<p>No favorites saved yet.</p>";
+  } else {
+    favorites.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "gallery-item";
+
+      card.innerHTML = `
+        ${item.media_type === "image"
+          ? `<img src="${item.url}" alt="${item.title}" />`
+          : `<iframe src="${item.url}" allowfullscreen></iframe>`}
+        <h3>${item.title}</h3>
+        <p>${item.date}</p>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+</script>
+
+<%- include('partials/footer') %>
