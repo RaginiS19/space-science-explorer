@@ -2,19 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Space Science Explorer - Discover NASA's Astronomy Picture of the Day and SpaceX launches"
+    <meta 
+      name="description" 
+      content="Explore space with daily astronomy pictures from NASA and upcoming SpaceX rocket launches. Your portal to space science discoveries." 
     />
+    <title>Space Science Explorer - NASA APOD & SpaceX Launches</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon-16x16.png" sizes="16x16">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- PWA -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Space Science Explorer</title>
+    
+    <!-- Preconnect to APIs -->
+    <link rel="preconnect" href="https://api.nasa.gov">
+    <link rel="preconnect" href="https://api.spacexdata.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Space Science Explorer",
+      "description": "Explore NASA's Astronomy Picture of the Day and SpaceX launches",
+      "applicationCategory": "Education"
+    }
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <noscript>
+      <div class="noscript-warning">
+        <h1>JavaScript Required</h1>
+        <p>This interactive space explorer requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+      </div>
+    </noscript>
+    <div id="root">
+      <div class="loading-spinner">Loading space data...</div>
+    </div>
   </body>
-</html> 
+</html>

@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const app = require('../app'); // adjust path if needed
+const app = require('../app'); 
 
 describe('GET /', () => {
   it('should return 200 and contain homepage content', async () => {
